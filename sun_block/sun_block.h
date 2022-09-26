@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 
-
+#define CASCADE_ALL_MOVEMENT (0)
+#define CASCADE_DELAY (500)
 
 #endif
