@@ -25,5 +25,6 @@ uint8_t pin[NUM_PIN] = {D15_SCL, D14_SDA, D13_SCK, D12_MISO, D11_MOSI, TX1_D9, D
 #define OFF (HIGH)
 #define ON  (LOW)
 
+void esp8266__goto_sleep_now();
 
 #endif

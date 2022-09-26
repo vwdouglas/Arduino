@@ -7,7 +7,7 @@ PubSubClient client(espClient);
 
 
 void mqtt__setup(Callback callback) {
-  client.setServer(mqtt_server, 1883);
+  client.setServer(mqtt_server, MQTT_PORT);
   client.setCallback(callback);
 
 }

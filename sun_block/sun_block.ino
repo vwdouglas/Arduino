@@ -22,9 +22,13 @@ void loop() {
     mqtt__loop();
     blade__update_all();
 
+    if (can_sleep_now()) {
+        esp8266__goto_sleep_now();
+    }
+
 }
 
-
+/* callback when we get an mqtt msg */
 void process_mqtt_message(char *topic, byte *payload, unsigned int length) {
 
     String string;
@@ -48,6 +52,7 @@ void process_mqtt_message(char *topic, byte *payload, unsigned int length) {
         }
 
     } else {
+        // check each topic for blade id
         for (uint8_t id = 0; id < NUM_BLADES; id++) {
             if (strcmp(topic, topic_blade[id]) == 0) {
                 blade__update_set_point(id, string.toInt());
@@ -56,3 +61,15 @@ void process_mqtt_message(char *topic, byte *payload, unsigned int length) {
     }
 
 }
+
+/* decide if going to sleep could happen */
+bool can_sleep_now() {
+    for (int i = 0; i < NUM_BLADES; i++) {
+        if (!blade__is_at_set_point(i)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+

@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+#define MQTT_PORT (1883)
+
 const char *mqtt_server = "192.168.0.44"; // IP Broker MQTT
 const char *topic_blade[7] = {
     &*"MBR/servo/blade1", // MQTT topic for blade 1
