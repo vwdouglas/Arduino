@@ -8,9 +8,17 @@
 
 void setup() {
     Serial.begin(BAUD_RATE);
+    Serial.println("sun_block setup start");
     setup_OTA();
     mqtt__setup(process_mqtt_message);
     blade__initalize();
+    Serial.println("sun_block setup end");
+
+    if (NUM_BLADES > (NUM_PIN -2)) {
+        while(1) {
+            Serial.println("Attempting to access more pins than we have listed. Add more pins to pin array");
+        }
+    }
 }
 
 void loop() {
@@ -47,6 +55,7 @@ void process_mqtt_message(char *topic, byte *payload, unsigned int length) {
         for (uint8_t id = 0; id < NUM_BLADES; id++) {
             blade__update_set_point(id, string.toInt());
 #if (1 == CASCADE_ALL_MOVEMENT) 
+            // add a small delay to make each blade start after the previous one started
             delay(CASCADE_DELAY);
 #endif
         }
