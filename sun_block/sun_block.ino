@@ -1,3 +1,5 @@
+// BLADE_RELAY_PIN (pin[NUM_PIN-3]) // TX1_D9
+
 #include "fan_blade.h"
 #include "esp8266.h"
 #include "OTA.h"
@@ -31,7 +33,8 @@ void loop() {
     blade__update_all();
 
     if (can_sleep_now()) {
-        esp8266__goto_sleep_now();
+        Serial.print("if can sleep");
+        //esp8266__goto_sleep_now(); I commet out because of crashing.
     }
 
 }
@@ -43,7 +46,8 @@ void process_mqtt_message(char *topic, byte *payload, unsigned int length) {
     for (int i = 0; i < length; i++) {
         string += ((char)payload[i]);
     }
-
+    Serial.print("Payload ");
+    Serial.println(topic);
     if (0 == strcmp(topic, topic_wench_up)) {
         wench__move_up();
     }
@@ -63,7 +67,18 @@ void process_mqtt_message(char *topic, byte *payload, unsigned int length) {
     } else {
         // check each topic for blade id
         for (uint8_t id = 0; id < NUM_BLADES; id++) {
+              /*  Serial.print("id= ");
+                Serial.print(id);
+                Serial.print(" NUM_BLADES= ");
+                Serial.println(NUM_BLADES);
+                Serial.print(" -1# Topic_blade= ");
+                Serial.println(topic_blade[id]);
+              */            
             if (strcmp(topic, topic_blade[id]) == 0) {
+                Serial.print(id);
+                Serial.print(" 2# Topic_blade ");
+                Serial.println(topic_blade[id]);  
+
                 blade__update_set_point(id, string.toInt());
             }
         }
@@ -78,7 +93,7 @@ bool can_sleep_now() {
             return false;
         }
     }
-
-    return true;
+ //   Serial.println("check print");
+    //return true;
 }
 

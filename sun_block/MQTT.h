@@ -13,6 +13,7 @@ const char *topic_blade[7] = {
     &*"MBR/servo/blade4", // MQTT topic for blade 4
     &*"MBR/servo/blade5", // MQTT topic for blade 5
     &*"MBR/servo/blade6", // MQTT topic for blade 6
+    &*"MBR/servo/all",    // MQTT topic for all blades
 };
 
 const char *topic_wench_up = "MBR/wench/up";     // MQTT topic to wench up

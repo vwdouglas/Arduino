@@ -3,8 +3,8 @@
 
 #include <Arduino.h>
 
-const char* ssid = "Aframe WiFi";
-const char* password = "cutelittlepennypaws";
+const char* ssid = "."; //"Aframe WiFi";
+const char* password = "m31J16d3R21";//"cutelittlepennypaws";
 
 void setup_OTA(); 
 

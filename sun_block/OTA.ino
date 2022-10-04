@@ -26,7 +26,7 @@ void setup_OTA() {
   Serial.println(WiFi.localIP());
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send(200, "text/plain", "Hi! I am ESP8266.");
+    request->send(200, "text/plain", "Hi! I am ESP8266. Sunblock");
   });
 
   AsyncElegantOTA.begin(&server);    // Start ElegantOTA

@@ -13,8 +13,6 @@
 #define D2         (16)
 // used at boot, safe after
 #define TX1_D9     (2)
-
-
 #define NUM_PIN (8)
 
 uint8_t pin[NUM_PIN] = {D15_SCL, D14_SDA, D13_SCK, D12_MISO, D11_MOSI, TX1_D9, D8, D2};

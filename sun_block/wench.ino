@@ -1,9 +1,9 @@
 #include "wench.h"
+#include "esp8266.h"
 
 void wench__setup() {
   pinMode(WENCH_DOWN_PIN, OUTPUT);
   digitalWrite(WENCH_DOWN_PIN, OFF);
-
   pinMode(WENCH_UP_PIN, OUTPUT);
   digitalWrite(WENCH_UP_PIN, OFF);
 }

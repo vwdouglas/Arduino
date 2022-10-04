@@ -1,3 +1,5 @@
+ // BLADE_RELAY_PIN (pin[NUM_PIN-3]) // TX1_D9
+ 
 #ifndef FAN_BLADE_H
 #define FAN_BLADE_H
 
@@ -5,7 +7,7 @@
 #include <Servo.h>
 
 #define STEP_SIZE (1)
-#define NUM_BLADES (2)
+#define NUM_BLADES (6)
 #define MIN_ANGLE_MS (500) // 0 degrees
 #define MAX_ANGLE_MS (2500) // 180 degrees
 #define DELAY 0
