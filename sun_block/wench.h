@@ -7,8 +7,8 @@
 #define DELAY_DOWN (2000)
 #define DELAY_UP   (2000)
 
-#define WENCH_UP_PIN (pin[NUM_PIN-2]) //D2
-#define WENCH_DOWN_PIN (pin[NUM_PIN-1]) //D8
+#define WENCH_UP_PIN (pin[NUM_PIN-1]) //D2
+#define WENCH_DOWN_PIN (pin[NUM_PIN-2]) //D8
 
 void wench__setup();
 

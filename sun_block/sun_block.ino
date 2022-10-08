@@ -14,9 +14,10 @@ void setup() {
     setup_OTA();
     mqtt__setup(process_mqtt_message);
     blade__initalize();
+    wench__setup()
     Serial.println("sun_block setup end");
 
-    if (NUM_BLADES > (NUM_PIN -2)) {
+    if (NUM_BLADES > (NUM_PIN-2)) {
         while(1) {
             Serial.println("Attempting to access more pins than we have listed. Add more pins to pin array");
         }
@@ -48,7 +49,7 @@ void process_mqtt_message(char *topic, byte *payload, unsigned int length) {
     }
     Serial.print("Payload ");
     Serial.println(topic);
-    if (0 == strcmp(topic, topic_wench_up)) {
+    if (0 == strcmp(topic, topic_wench_up)) {       
         wench__move_up();
     }
     else if (0 == strcmp(topic, topic_wench_down)) {
