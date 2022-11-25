@@ -14,7 +14,7 @@ void setup() {
     setup_OTA();
     mqtt__setup(process_mqtt_message);
     blade__initalize();
-    wench__setup()
+    wench__setup();
     Serial.println("sun_block setup end");
 
     if (NUM_BLADES > (NUM_PIN-2)) {
@@ -26,8 +26,8 @@ void setup() {
 
 void loop() {
     
-    if(!mqtt__is_connected()) {
-        mqtt__reconnect();
+  /*  if(!mqtt__is_connected()) {
+       mqtt__reconnect();
     }
 
     mqtt__loop();
@@ -37,7 +37,7 @@ void loop() {
         Serial.print("if can sleep");
         //esp8266__goto_sleep_now(); I commet out because of crashing.
     }
-
+*/
 }
 
 /* callback when we get an mqtt msg */
@@ -97,4 +97,3 @@ bool can_sleep_now() {
  //   Serial.println("check print");
     //return true;
 }
-

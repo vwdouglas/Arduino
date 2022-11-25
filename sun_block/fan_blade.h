@@ -10,7 +10,7 @@
 #define NUM_BLADES (5)
 #define MIN_ANGLE_MS (500)  // 0 degrees
 #define MAX_ANGLE_MS (2500) // 180 degrees
-#define DELAY 0
+#define DELAY 100
 
 #define BLADE_RELAY_PIN (pin[NUM_PIN - 3]) // TX1_D9
 
