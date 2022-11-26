@@ -1,14 +1,23 @@
+
+
+
+
+
+//pressure 0 psi = 0 volts 
+//Pressure 150 psi = 5 Volts
+
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 
 LiquidCrystal_I2C lcd(0x3F, 20, 4);
 int analogPin = A0;  // pressure sensor (middle terminal) connected to analog pin 1 outside leads to ground and +5V
-int inPutPressure;   //Pressure gage
+int inPutPressure = 0;   //Pressure gage
 
 
 void setup() {
   pinMode(2, OUTPUT);  // sets the digital pin 2 as output Set freek drive on low
   pinMode(3, OUTPUT);  // sets the digital pin 3 as output Set freek drive on med-low
+pinMode(3, OUTPUT);  // sets the digital pin 3 as output Set freek drive on high 
   digitalWrite(2, LOW);
   digitalWrite(3, LOW);
 
@@ -30,7 +39,7 @@ void loop() {
   lcd.print(inPutPressure);
   lcd.print("    ");
 
-  if (inPutPressure > 800) {
+  if (1000 > inPutPressure > 800) {
     digitalWrite(2, HIGH);
     digitalWrite(3, LOW);
     digitalWrite(4, LOW);
@@ -38,7 +47,7 @@ void loop() {
     digitalWrite(2, LOW);
     digitalWrite(3, HIGH);
     digitalWrite(4, LOW);
-  } else if (inPutPressure < 499 and inPutPressure > 100) {
+  } else if (inPutPressure < 499 and inPutPressure ) {
     digitalWrite(2, LOW);
     digitalWrite(3, LOW);
     digitalWrite(4, HIGH);
