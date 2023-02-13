@@ -39,8 +39,14 @@ bool compressureState = true;  // true = on   false = off
 float displayPressure = 0;
 float const multplyerForPSI = .1470588;
 int powerSW;   //power switch
-
+int sampleSize = 20
+double meadPressure = 0;
+double readPressure[sampleSize];
+int pressureCounter = 0;
 void setup() {
+
+  memset(readPressure,0,sizeof(readPressure[sampleSize]));
+
   pinMode(swpin, INPUT);//power button
   pinMode(lowSpeed, OUTPUT);  // sets the digital pin 7 as output Set freek drive on low
   pinMode(medSpeed, OUTPUT);  // sets the digital pin 6 as output Set freek drive on med-low
@@ -131,7 +137,18 @@ Serial.print(powerSW);
   displayWrite();
  
   // Compressure contral section
-  inPutPressure = analogRead(analogPin) * multplyerForPSI;
+
+if (pressureCounuer >sampleSize - 1) {
+    pressureCounter ++;
+}
+else {pressureCounter = 0}
+  
+readPressure[pressureCounter]= analogRead(analogPin) * multplyerForPSI;
+for (int i = 0; i < sampleSize ; i++ )
+inPutPressure += readPressure[ i ];
+
+
+  //inPutPressure = analogRead(analogPin) * multplyerForPSI;
   if (inPutPressure >= offPressure) {
     compressureState = false;  // true = on "Low pressure"   false = off "High pressure"
     digitalWrite(lowSpeed, LOW);
